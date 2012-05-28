@@ -39,10 +39,10 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>farioServer</finalName>
+    <finalName>embeddedTomcatSample</finalName>
     <plugins>
         <plugin>
-            <groupId>org.athrun.fario</groupId>
+            <groupId>org.codehaus.mojo</groupId>
             <artifactId>appassembler-maven-plugin</artifactId>
             <version>1.1.1</version>
             <configuration>
