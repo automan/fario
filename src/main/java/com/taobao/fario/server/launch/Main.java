@@ -1,4 +1,4 @@
-package launch;
+package com.taobao.fario.server.launch;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,9 @@ import javax.servlet.ServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
-import servlet.HelloServlet;
+import com.taobao.fario.server.servlet.HelloServlet;
+import com.taobao.fario.server.servlet.RegisterServlet;
+
 
 public class Main {
 
@@ -35,6 +37,8 @@ public class Main {
 				new File(webappDirLocation).getAbsolutePath());
 		tomcat.addServlet("/", "hello", HelloServlet.class.getName());
 		ctx.addServletMapping("/hello", "hello");
+		tomcat.addServlet("/", "register", RegisterServlet.class.getName());
+		ctx.addServletMapping("/register", "register");
 
 		System.out.println("configuring app with basedir: "
 				+ new File("./" + webappDirLocation).getAbsolutePath());

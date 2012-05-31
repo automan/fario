@@ -1,4 +1,4 @@
-package servlet;
+package com.taobao.fario.server.servlet;
 
 import java.io.IOException;
 
