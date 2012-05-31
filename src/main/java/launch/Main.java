@@ -1,4 +1,4 @@
-package com.taobao.fario.server.launch;
+package launch;
 
 import java.io.File;
 import java.io.IOException;
