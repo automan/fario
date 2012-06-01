@@ -4,6 +4,7 @@
 package com.taobao.fario.server.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.taobao.fario.server.service.LocationInfo;
+import com.taobao.fario.server.service.ShopInfo;
 import com.taobao.fario.server.service.UserHistory;
 
 /**
@@ -27,29 +29,29 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		req.setCharacterEncoding("utf-8");
 		String time = req.getParameter("time");
 		String latitude = req.getParameter("la");
 		String longitude = req.getParameter("lo");
 		String altitude = req.getParameter("al");
 		String accuracy = req.getParameter("acc");
 		String username = req.getParameter("uid");
-
-		if (username != null) {
-			username = new String(username.getBytes("ISO8859-1"), "UTF-8");
-		}
+		String key = req.getParameter("key");
 
 		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
 				altitude, accuracy, username);
 
-		LocationInfo last = UserHistory.getInstance().last(locationInfo);
 		UserHistory.getInstance().add(locationInfo);
+		ShopInfo shopInfo = new ShopInfo(key);
+		String result = shopInfo.toJson();
 
-		resp.setCharacterEncoding("UTF-8");
-		if (last != null) {
-			resp.getWriter().write(last.toString());
+		PrintWriter writer = resp.getWriter();
+		if (result != null) {
+			writer.write(result);
 		} else {
-			resp.getWriter().write("first time visit!");
+			writer.write("");
 		}
+		writer.close();
 
 	}
 
@@ -70,17 +72,21 @@ public class RegisterServlet extends HttpServlet {
 		String altitude = req.getParameter("al");
 		String accuracy = req.getParameter("acc");
 		String username = req.getParameter("uid");
+		String key = req.getParameter("key");
 
 		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
 				altitude, accuracy, username);
 
-		LocationInfo last = UserHistory.getInstance().last(locationInfo);
 		UserHistory.getInstance().add(locationInfo);
+		ShopInfo shopInfo = new ShopInfo(key);
+		String result = shopInfo.toJson();
 
-		if (last != null) {
-			resp.getWriter().write(URLEncoder.encode(last.toString(), "UTF-8"));
+		PrintWriter writer = resp.getWriter();
+		if (result != null) {
+			writer.write(result);
 		} else {
-			resp.getWriter().write("first time visit!");
+			writer.write("");
 		}
+		writer.close();
 	}
 }
