@@ -43,13 +43,18 @@ public class LocationInfo {
 
 	@Override
 	public String toString() {
-		SimpleDateFormat timeFormat = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
-		Date date = new Date(Long.parseLong(this.time));
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("Time: ").append(timeFormat.format(date)).append("\n")
-				.append("Latitude: ").append(this.latitude).append("\n")
+
+		if (this.time != null) {
+			SimpleDateFormat timeFormat = new SimpleDateFormat(
+					"yyyy-MM-dd HH:mm:ss");
+			Date date = new Date(Long.parseLong(this.time));
+			sb.append("Time: ").append(timeFormat.format(date)).append("\n");
+		} else {
+			sb.append("Time: ").append(this.time).append("\n");
+		}
+		sb.append("Latitude: ").append(this.latitude).append("\n")
 				.append("Longitude: ").append(this.longitude).append("\n")
 				.append("Altitude: ").append(this.altitude).append("\n")
 				.append("Accuracy: ").append(this.accuracy).append("\n")
@@ -57,5 +62,4 @@ public class LocationInfo {
 
 		return sb.toString();
 	}
-
 }
