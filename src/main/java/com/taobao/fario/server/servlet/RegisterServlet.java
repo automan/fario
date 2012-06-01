@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
 				altitude, accuracy, username);
 
-		LocationInfo last = UserHistory.getInstance().last();
+		LocationInfo last = UserHistory.getInstance().last(locationInfo);
 		UserHistory.getInstance().add(locationInfo);
 
 		if (last != null) {

@@ -23,6 +23,10 @@ public class LocationInfo {
 	private String accuracy;
 	private String username;
 
+	public String getUsername() {
+		return username;
+	}
+
 	/**
 	 * @param time
 	 * @param latitude
