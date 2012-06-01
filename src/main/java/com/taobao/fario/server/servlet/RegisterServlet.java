@@ -5,6 +5,7 @@ package com.taobao.fario.server.servlet;
 
 import java.io.IOException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 		String username = req.getParameter("uid");
 
 		if (username != null) {
-			username = URLDecoder.decode(username, "UTF-8");
+			username = new String(username.getBytes("ISO8859-1"), "UTF-8");
 		}
 
 		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
@@ -43,6 +44,7 @@ public class RegisterServlet extends HttpServlet {
 		LocationInfo last = UserHistory.getInstance().last(locationInfo);
 		UserHistory.getInstance().add(locationInfo);
 
+		resp.setCharacterEncoding("UTF-8");
 		if (last != null) {
 			resp.getWriter().write(last.toString());
 		} else {
@@ -59,7 +61,7 @@ public class RegisterServlet extends HttpServlet {
 	 * , javax.servlet.http.HttpServletResponse)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String time = req.getParameter("time");
@@ -76,7 +78,7 @@ public class RegisterServlet extends HttpServlet {
 		UserHistory.getInstance().add(locationInfo);
 
 		if (last != null) {
-			resp.getWriter().write(last.toString());
+			resp.getWriter().write(URLEncoder.encode(last.toString(), "UTF-8"));
 		} else {
 			resp.getWriter().write("first time visit!");
 		}
