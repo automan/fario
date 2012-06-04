@@ -49,8 +49,8 @@ public class ShopInfo {
 		category = gbkToUtf8("汽车服务");
 		getBy = gbkToUtf8("加油站");
 
-		latitude = "120.26776";
-		longitude = "30.405";
+		latitude = "30.405";
+		longitude = "120.26776";
 		altitude = "0.0";
 	}
 
