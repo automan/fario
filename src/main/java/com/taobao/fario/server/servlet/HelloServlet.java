@@ -9,19 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(
-        name = "MyServlet", 
-        urlPatterns = {"/hello"}
-    )
+import com.taobao.fario.server.db.test;
+
+@WebServlet(name = "MyServlet", urlPatterns = { "/hello" })
 public class HelloServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        ServletOutputStream out = resp.getOutputStream();
-        out.write("hello, welcome to Fario!!!".getBytes());
-        out.flush();
-        out.close();
-    }
-    
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		ServletOutputStream out = resp.getOutputStream();
+		out.write("hello, welcome to Fario!!!".getBytes());
+		try {
+			out.write(test.testdb().getBytes());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.flush();
+		out.close();
+	}
+
 }
