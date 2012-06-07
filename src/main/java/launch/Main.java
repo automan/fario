@@ -32,9 +32,11 @@ public class Main {
 		}
 
 		tomcat.setPort(Integer.valueOf(webPort));
+		
 
 		Context ctx = tomcat.addWebapp("/",
 				new File(webappDirLocation).getAbsolutePath());
+		
 		tomcat.addServlet("/", "hello", HelloServlet.class.getName());
 		ctx.addServletMapping("/hello", "hello");
 		tomcat.addServlet("/", "register", RegisterServlet.class.getName());
