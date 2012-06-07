@@ -8,9 +8,9 @@
 
     <session-factory>
         
-        <property name="connection.url">jdbc:postgresql://ec2-23-21-132-139.compute-1.amazonaws.com/dkruvhrubx</property>        
-        <property name="connection.username">dkruvhrubx</property>
-        <property name="connection.password">vSbRdgipqkNF4rWzuny6</property>
+        <property name="connection.url">jdbc:postgresql://ec2-23-23-234-207.compute-1.amazonaws.com/de0kicucnvgj98</property>        
+        <property name="connection.username">ntbblzmivnuzcq</property>
+        <property name="connection.password">8Rv3_OytNkovjUQgSyfQXdWCNT</property>
         
         <!-- 
         <property name="connection.url">jdbc:postgresql://localhost/fario</property>        
