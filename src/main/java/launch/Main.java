@@ -1,19 +1,15 @@
 package launch;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
+import com.taobao.fario.server.servlet.AddShopServlet;
 import com.taobao.fario.server.servlet.HelloServlet;
 import com.taobao.fario.server.servlet.RegisterServlet;
+import com.taobao.fario.server.servlet.RegisterUserServlet;
+import com.taobao.fario.server.servlet.ShopListServlet;
 
 
 public class Main {
@@ -39,8 +35,19 @@ public class Main {
 		
 		tomcat.addServlet("/", "hello", HelloServlet.class.getName());
 		ctx.addServletMapping("/hello", "hello");
+		
 		tomcat.addServlet("/", "register", RegisterServlet.class.getName());
 		ctx.addServletMapping("/register", "register");
+		
+		tomcat.addServlet("/", "registerUser", RegisterUserServlet.class.getName());
+		ctx.addServletMapping("/registerUser", "registerUser");
+		
+		tomcat.addServlet("/", "addShop", AddShopServlet.class.getName());
+		ctx.addServletMapping("/addShop", "addShop");
+		
+		tomcat.addServlet("/", "shoplist", ShopListServlet.class.getName());
+		ctx.addServletMapping("/shoplist", "shoplist");
+		
 
 		System.out.println("configuring app with basedir: "
 				+ new File("./" + webappDirLocation).getAbsolutePath());

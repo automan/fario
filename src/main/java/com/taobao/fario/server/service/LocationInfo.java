@@ -6,6 +6,8 @@ package com.taobao.fario.server.service;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
+import javax.persistence.Entity;
+
 /**
  * @author taichan
  * 
