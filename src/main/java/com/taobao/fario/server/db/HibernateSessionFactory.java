@@ -2,9 +2,12 @@ package com.taobao.fario.server.db;
 
 import java.io.File;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
+import org.w3c.dom.Document;
 
 public class HibernateSessionFactory {
 
@@ -13,10 +16,15 @@ public class HibernateSessionFactory {
 	private static Configuration configuration = new Configuration();
 	private static org.hibernate.SessionFactory sessionFactory;
 	private static String configFile = CONFIG_FILE_LOCATION;
+	private static String user_configFile = "src/main/java/com/taobao/fario/server/service/User.hbm.xml";
 
 	static {
 		try {
 			configuration.configure(new File(configFile));
+
+			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+					.parse(new File(user_configFile));
+			configuration.addDocument(doc);
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {
 			System.err.println("%%%% Error Creating SessionFactory %%%%");
