@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.taobao.fario.server.service.ShopInfo" table="shopinfo">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+		<property name="shopName" type="java.lang.String">
+			<column name="shopname" not-null="true" length="50" />
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="address" not-null="true" length="50" />
+		</property>
+		<property name="telephone" type="java.lang.String">
+			<column name="telephone" length="50" />
+		</property>
+
+		<property name="fetchfrom" type="java.lang.String">
+			<column name="getfrom" length="2" />
+		</property>
+		<property name="fetchBy" type="java.lang.String">
+			<column name="getby" length="20" />
+		</property>
+
+		<property name="latitude" type="java.lang.Double">
+			<column name="latitude" not-null="true" />
+		</property>
+		<property name="longitude" type="java.lang.Double">
+			<column name="longitude" not-null="true" />
+		</property>
+		<property name="altitude" type="java.lang.Double">
+			<column name="altitude" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>
+
