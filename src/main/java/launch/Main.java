@@ -39,11 +39,11 @@ public class Main {
 		tomcat.addServlet("/", "register", RegisterServlet.class.getName());
 		ctx.addServletMapping("/register", "register");
 		
-		tomcat.addServlet("/", "registerUser", RegisterUserServlet.class.getName());
-		ctx.addServletMapping("/registerUser", "registerUser");
+		tomcat.addServlet("/", "registeruser", RegisterUserServlet.class.getName());
+		ctx.addServletMapping("/registeruser", "registeruser");
 		
-		tomcat.addServlet("/", "addShop", AddShopServlet.class.getName());
-		ctx.addServletMapping("/addShop", "addShop");
+		tomcat.addServlet("/", "addshop", AddShopServlet.class.getName());
+		ctx.addServletMapping("/addshop", "addshop");
 		
 		tomcat.addServlet("/", "shoplist", ShopListServlet.class.getName());
 		ctx.addServletMapping("/shoplist", "shoplist");

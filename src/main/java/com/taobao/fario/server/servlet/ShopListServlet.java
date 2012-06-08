@@ -29,7 +29,7 @@ import com.taobao.fario.server.service.UserHistory;
  * @author taichan
  * 
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = { "/register" })
+@WebServlet(name = "RegisterServlet", urlPatterns = { "/shoplist" })
 public class ShopListServlet extends HttpServlet {
 
 	@Override
