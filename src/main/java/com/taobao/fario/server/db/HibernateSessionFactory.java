@@ -12,12 +12,11 @@ public class HibernateSessionFactory {
 	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
 	private static Configuration configuration = new Configuration();
 	private static org.hibernate.SessionFactory sessionFactory;
-	private static String configFile = new File(CONFIG_FILE_LOCATION)
-			.getAbsolutePath();
+	private static String configFile = CONFIG_FILE_LOCATION;
 
 	static {
 		try {
-			configuration.configure(configFile);
+			configuration.configure(new File(configFile));
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {
 			System.err.println("%%%% Error Creating SessionFactory %%%%");
