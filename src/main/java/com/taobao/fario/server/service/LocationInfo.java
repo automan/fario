@@ -14,16 +14,22 @@ import javax.persistence.Entity;
  */
 
 public class LocationInfo {
+
 	private static final String TAG = "LocationInfo";
 
-	private String time;
-	private String latitude;
-	private String longitude;
 	// private String speed;
 	// private String bearing;
-	private String altitude;
-	private String accuracy;
+
 	private String username;
+
+	private int userid;
+	private String time;
+
+	private double latitude;
+	private double longitude;
+	private double altitude;
+	private double precision;
+	private int accuracy;
 
 	public String getUsername() {
 		return username;
@@ -37,8 +43,8 @@ public class LocationInfo {
 	 * @param accuracy
 	 * @param username
 	 */
-	public LocationInfo(String time, String latitude, String longitude,
-			String altitude, String accuracy, String username) {
+	public LocationInfo(String time, double latitude, double longitude,
+			double altitude, int accuracy, String username) {
 		this.time = time;
 		this.latitude = latitude;
 		this.longitude = longitude;
