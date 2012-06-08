@@ -16,6 +16,7 @@ import com.taobao.fario.server.util.ToolUtil;
  */
 public class ShopInfo {
 	private String shopName;
+	private String shopurl;
 
 	public String getShopName() {
 		return shopName;
@@ -149,10 +150,25 @@ public class ShopInfo {
 		latitude = 30.405;
 		longitude = 120.26776;
 		altitude = 0.0;
+		shopurl = "http://poi.mapbar.com/hangzhou/MAPICPFNYMJBXRYMHOTIC";
 	}
 
 	public String toJson() {
 		JSONObject jsonObject = JSONObject.fromObject(this);
 		return jsonObject.toString();
+	}
+
+	/**
+	 * @return the shopurl
+	 */
+	public String getShopurl() {
+		return shopurl;
+	}
+
+	/**
+	 * @param shopurl the shopurl to set
+	 */
+	public void setShopurl(String shopurl) {
+		this.shopurl = shopurl;
 	}
 }
