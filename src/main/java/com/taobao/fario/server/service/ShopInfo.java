@@ -93,6 +93,18 @@ public class ShopInfo {
 		return fetchfrom;
 	}
 
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public void setAltitude(Double altitude) {
+		this.altitude = altitude;
+	}
+
 	public void setFetchfrom(String fetchfrom) {
 		this.fetchfrom = fetchfrom;
 	}
