@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.taobao.fario.server.service.LocationInfo" table="locationhistory">
+		<id name="userid" type="java.lang.Integer">
+			<column name="id" />
+		</id>
+		<property name="time" type="java.lang.String">
+			<column name="time" not-null="true" length="50" />
+		</property>
+		<property name="latitude" type="java.lang.Double">
+			<column name="latitude" not-null="true" />
+		</property>
+		<property name="longitude" type="java.lang.Double">
+			<column name="longitude" />
+		</property>
+
+		<property name="altitude" type="java.lang.Double">
+			<column name="altitude" not-null="true" />
+		</property>
+		<property name="accuracy" type="java.lang.Integer">
+			<column name="accuracy" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>
+
+userid integer,
+"time" time with time zone,
+latitude double precision,
+longitude double precision,
+double precision,
+accuracy integer,
