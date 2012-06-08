@@ -10,6 +10,16 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.w3c.dom.Document;
 
+/**
+ *    commands:
+ *       
+ *       pg_dump -U postgres -Fc --no-acl --no-owner fario > data.dump
+ *       
+ *       PGPASSWORD=8Rv3_OytNkovjUQgSyfQXdWCNT pg_restore --verbose --clean --no-acl --no-owner -h ec2-23-23-234-207.compute-1.amazonaws.com -U ntbblzmivnuzcq -d de0kicucnvgj98 ~/data.dump
+ *               
+ * @author taichan
+ *
+ */
 public class HibernateSessionFactory {
 
 	private static String CONFIG_FILE_LOCATION = "src/main/java/hibernate.cfg.xml";
@@ -22,7 +32,7 @@ public class HibernateSessionFactory {
 	private static String shopinfo_configFile = "src/main/java/com/taobao/fario/server/service/ShopInfo.hbm.xml";
 
 	static {
-		try {
+		try {			
 			configuration.configure(new File(configFile));
 			DocumentBuilder documentBuilder = DocumentBuilderFactory
 					.newInstance().newDocumentBuilder();
