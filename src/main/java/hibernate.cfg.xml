@@ -8,16 +8,16 @@
 
     <session-factory>
           
- 
-        <property name="connection.url">jdbc:postgresql://ec2-23-23-234-207.compute-1.amazonaws.com/de0kicucnvgj98</property>        
-        <property name="connection.username">ntbblzmivnuzcq</property>
-        <property name="connection.password">8Rv3_OytNkovjUQgSyfQXdWCNT</property>
-        
-          <!--     
+   
+        <property name="connection.url">jdbc:postgresql://ec2-23-23-201-251.compute-1.amazonaws.com/d7in801ubcs5ne</property>        
+        <property name="connection.username">tcxewfdeosledw</property>
+        <property name="connection.password">lXlVcmLfbQ2TpvekcxNLLkncXV</property>
+           
+   		<!--          
         <property name="connection.url">jdbc:postgresql://localhost/fario</property>        
         <property name="connection.username">postgres</property>
         <property name="connection.password">Taobao2011</property>
-  		 -->    
+  		-->
          
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="connection.driver_class">org.postgresql.Driver</property>

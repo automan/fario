@@ -15,7 +15,7 @@ import org.w3c.dom.Document;
  *       
  *       pg_dump -U postgres -Fc --no-acl --no-owner fario > data.dump
  *       
- *       PGPASSWORD=8Rv3_OytNkovjUQgSyfQXdWCNT pg_restore --verbose --clean --no-acl --no-owner -h ec2-23-23-234-207.compute-1.amazonaws.com -U ntbblzmivnuzcq -d de0kicucnvgj98 ~/data.dump
+ *       PGPASSWORD=lXlVcmLfbQ2TpvekcxNLLkncXV pg_restore --verbose --clean --no-acl --no-owner -h ec2-23-23-201-251.compute-1.amazonaws.com -U tcxewfdeosledw -d d7in801ubcs5ne ~/data.dump
  *               
  * @author taichan
  *
