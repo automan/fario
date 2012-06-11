@@ -5,10 +5,7 @@ package com.taobao.fario.server.service;
 
 import java.io.UnsupportedEncodingException;
 
-import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
-
-import com.taobao.fario.server.util.ToolUtil;
 
 /**
  * @author taichan
@@ -16,6 +13,7 @@ import com.taobao.fario.server.util.ToolUtil;
  */
 public class ShopInfo {
 	private String shopName;
+	private String shopurl;
 
 	public String getShopName() {
 		return shopName;
@@ -149,27 +147,42 @@ public class ShopInfo {
 		latitude = 30.405;
 		longitude = 120.26776;
 		altitude = 0.0;
+		shopurl = "http://poi.mapbar.com/hangzhou/MAPICPFNYMJBXRYMHOTIC";
 	}
 
 	public ShopInfo(String name, String address, String telephone,
 			String fetchfrom, String category, String fetchBy, Double latitude,
 			Double longitude, Double altitude) {
 		// TODO Auto-generated constructor stub
-		shopName = "加油站 (康桥中学南)";
-		address = "拱康路 - 4 公里 北";
-		telephone = "0571-80801133";
-		fetchfrom = "mapbar";
-		category = "汽车服务";
-		fetchBy = "加油站";
+		this.shopName = name;
+		this.address = address;
+		this.telephone = telephone;
+		this.fetchfrom = fetchfrom;
+		this.category = category;
+		this.fetchBy = fetchBy;
 
-		latitude = 30.405;
-		longitude = 120.26776;
-		altitude = 0.0;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.altitude = altitude;
 
 	}
 
 	public String toJson() {
 		JSONObject jsonObject = JSONObject.fromObject(this);
 		return jsonObject.toString();
+	}
+
+	/**
+	 * @return the shopurl
+	 */
+	public String getShopurl() {
+		return shopurl;
+	}
+
+	/**
+	 * @param shopurl the shopurl to set
+	 */
+	public void setShopurl(String shopurl) {
+		this.shopurl = shopurl;
 	}
 }
