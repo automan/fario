@@ -31,10 +31,10 @@ public class RegisterServlet extends HttpServlet {
 
 		req.setCharacterEncoding("utf-8");
 		String time = req.getParameter("time");
-		String latitude = req.getParameter("la");
-		String longitude = req.getParameter("lo");
-		String altitude = req.getParameter("al");
-		String accuracy = req.getParameter("acc");
+		double latitude = Double.parseDouble(req.getParameter("la"));
+		double longitude = Double.parseDouble(req.getParameter("lo"));
+		double altitude = Double.parseDouble(req.getParameter("al"));
+		int accuracy = Integer.parseInt(req.getParameter("acc"));
 		String username = req.getParameter("uid");
 		String key = req.getParameter("key");
 
@@ -67,10 +67,10 @@ public class RegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String time = req.getParameter("time");
-		String latitude = req.getParameter("la");
-		String longitude = req.getParameter("lo");
-		String altitude = req.getParameter("al");
-		String accuracy = req.getParameter("acc");
+		double latitude = Double.parseDouble(req.getParameter("la"));
+		double longitude = Double.parseDouble(req.getParameter("lo"));
+		double altitude = Double.parseDouble(req.getParameter("al"));
+		int accuracy = Integer.parseInt(req.getParameter("acc"));
 		String username = req.getParameter("uid");
 		String key = req.getParameter("key");
 

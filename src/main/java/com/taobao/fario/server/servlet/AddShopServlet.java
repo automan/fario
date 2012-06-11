@@ -30,7 +30,7 @@ import com.taobao.fario.server.service.UserHistory;
  * @author taichan
  * 
  */
-@WebServlet(name = "AddShopServlet", urlPatterns = { "/addShop" })
+@WebServlet(name = "AddShopServlet", urlPatterns = { "/addshop" })
 public class AddShopServlet extends HttpServlet {
 
 	@Override
@@ -39,7 +39,7 @@ public class AddShopServlet extends HttpServlet {
 
 		ServletOutputStream out = resp.getOutputStream();
 
-		String shopName = req.getParameter("shopName");
+		String shopName = req.getParameter("shopname");
 		String address = req.getParameter("address");
 		String telephone = req.getParameter("telephone");
 		String fetchfrom = req.getParameter("fetchfrom");
@@ -53,7 +53,7 @@ public class AddShopServlet extends HttpServlet {
 		Session session = HibernateSessionFactory.getSession();
 		Transaction beginTransaction = session.beginTransaction();
 
-		ShopInfo shop = new ShopInfo("key");
+		ShopInfo shop = new ShopInfo(shopName,address,telephone,fetchfrom,category,fetchBy,latitude,longitude,altitude);
 
 		session.save(shop);
 		beginTransaction.commit();
