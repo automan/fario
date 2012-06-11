@@ -7,13 +7,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+
+import com.taobao.fario.server.db.HibernateSessionFactory;
 import com.taobao.fario.server.service.LocationInfo;
 import com.taobao.fario.server.service.ShopInfo;
 import com.taobao.fario.server.service.UserHistory;
@@ -42,17 +48,21 @@ public class RegisterServlet extends HttpServlet {
 				altitude, accuracy, username);
 
 		UserHistory.getInstance().add(locationInfo);
-		ShopInfo shopInfo = new ShopInfo(key);
-		String result = shopInfo.toJson();
+		
+		Session session = HibernateSessionFactory.getSession();
 
-		PrintWriter writer = resp.getWriter();
-		if (result != null) {
-			writer.write(result);
-		} else {
-			writer.write("");
+		Criteria criteria = session.createCriteria(ShopInfo.class);
+		criteria.setMaxResults(1);
+		List<ShopInfo> shoplist = criteria.list();
+
+		ServletOutputStream out = resp.getOutputStream();
+		for (ShopInfo s : shoplist) {
+			out.write((s.toJson() + "\r\n").getBytes("UTF-8"));
 		}
-		writer.close();
+		session.close();
 
+		out.flush();
+		out.close();
 	}
 
 	/*
@@ -78,15 +88,20 @@ public class RegisterServlet extends HttpServlet {
 				altitude, accuracy, username);
 
 		UserHistory.getInstance().add(locationInfo);
-		ShopInfo shopInfo = new ShopInfo(key);
-		String result = shopInfo.toJson();
+		
+		Session session = HibernateSessionFactory.getSession();
 
-		PrintWriter writer = resp.getWriter();
-		if (result != null) {
-			writer.write(result);
-		} else {
-			writer.write("");
+		Criteria criteria = session.createCriteria(ShopInfo.class);
+		criteria.setMaxResults(1);
+		List<ShopInfo> shoplist = criteria.list();
+
+		ServletOutputStream out = resp.getOutputStream();
+		for (ShopInfo s : shoplist) {
+			out.write((s.toJson() + "\r\n").getBytes("UTF-8"));
 		}
-		writer.close();
+		session.close();
+
+		out.flush();
+		out.close();
 	}
 }

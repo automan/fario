@@ -155,16 +155,16 @@ public class ShopInfo {
 			String fetchfrom, String category, String fetchBy, Double latitude,
 			Double longitude, Double altitude) {
 		// TODO Auto-generated constructor stub
-		this.shopName = name;
-		this.address = address;
-		this.telephone = telephone;
-		this.fetchfrom = fetchfrom;
-		this.category = category;
-		this.fetchBy = fetchBy;
+		shopName = "加油站 (康桥中学南)";
+		address = "拱康路 - 4 公里 北";
+		telephone = "0571-80801133";
+		fetchfrom = "mapbar";
+		category = "汽车服务";
+		fetchBy = "加油站";
 
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.altitude = altitude;
+		latitude = 30.405;
+		longitude = 120.26776;
+		altitude = 0.0;
 
 	}
 
