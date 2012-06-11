@@ -39,6 +39,17 @@ public class AddShopServlet extends HttpServlet {
 
 		ServletOutputStream out = resp.getOutputStream();
 
+		String shopName = req.getParameter("shopName");
+		String address = req.getParameter("address");
+		String telephone = req.getParameter("telephone");
+		String fetchfrom = req.getParameter("fetchfrom");
+		String category = req.getParameter("category");
+		String fetchBy = req.getParameter("fetchBy");
+
+		Double latitude = Double.parseDouble(req.getParameter("latitude"));
+		Double longitude = Double.parseDouble(req.getParameter("longitude"));
+		Double altitude = Double.parseDouble(req.getParameter("altitude"));
+
 		Session session = HibernateSessionFactory.getSession();
 		Transaction beginTransaction = session.beginTransaction();
 
@@ -72,10 +83,10 @@ public class AddShopServlet extends HttpServlet {
 			throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		String time = req.getParameter("time");
-		String latitude = req.getParameter("la");
-		String longitude = req.getParameter("lo");
-		String altitude = req.getParameter("al");
-		String accuracy = req.getParameter("acc");
+		Double latitude = Double.parseDouble(req.getParameter("la"));
+		Double longitude = Double.parseDouble(req.getParameter("lo"));
+		Double altitude = Double.parseDouble(req.getParameter("al"));
+		int accuracy = Integer.parseInt(req.getParameter("acc"));
 		String username = req.getParameter("uid");
 		String key = req.getParameter("key");
 
