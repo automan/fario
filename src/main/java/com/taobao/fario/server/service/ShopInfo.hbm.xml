@@ -13,9 +13,7 @@
 		<property name="category" type="java.lang.String">
 			<column name="category" not-null="true" length="50" />
 		</property>
-		<property name="shopurl" type="java.lang.String">
-			<column name="shopurl" not-null="true" length="50" />
-		</property>
+		
 		<property name="address" type="java.lang.String">
 			<column name="address" not-null="true" length="50" />
 		</property>
