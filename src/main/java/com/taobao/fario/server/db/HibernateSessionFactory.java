@@ -11,14 +11,16 @@ import org.hibernate.cfg.Configuration;
 import org.w3c.dom.Document;
 
 /**
- *    commands:
- *       
- *       pg_dump -U postgres -Fc --no-acl --no-owner fario > data.dump
- *       
- *       PGPASSWORD=8Rv3_OytNkovjUQgSyfQXdWCNT pg_restore --verbose --clean --no-acl --no-owner -h ec2-23-23-234-207.compute-1.amazonaws.com -U ntbblzmivnuzcq -d de0kicucnvgj98 ~/data.dump
- *               
+ * commands:
+ * 
+ * pg_dump -U postgres -Fc --no-acl --no-owner fario > data.dump
+ * 
+ * PGPASSWORD=8Rv3_OytNkovjUQgSyfQXdWCNT pg_restore --verbose --clean --no-acl
+ * --no-owner -h ec2-23-23-234-207.compute-1.amazonaws.com -U ntbblzmivnuzcq -d
+ * de0kicucnvgj98 ~/data.dump
+ * 
  * @author taichan
- *
+ * 
  */
 public class HibernateSessionFactory {
 
@@ -30,18 +32,24 @@ public class HibernateSessionFactory {
 
 	private static String user_configFile = "src/main/java/com/taobao/fario/server/service/User.hbm.xml";
 	private static String shopinfo_configFile = "src/main/java/com/taobao/fario/server/service/ShopInfo.hbm.xml";
+	private static String localhistory_configFile = "src/main/java/com/taobao/fario/server/service/locationhistory.hbm.xml";
 
 	static {
-		try {			
+		try {
 			configuration.configure(new File(configFile));
 			DocumentBuilder documentBuilder = DocumentBuilderFactory
 					.newInstance().newDocumentBuilder();
 
 			Document doc = documentBuilder.parse(new File(user_configFile));
 			configuration.addDocument(doc);
-			
-			Document docshop = documentBuilder.parse(new File(shopinfo_configFile));
+
+			Document docshop = documentBuilder.parse(new File(
+					shopinfo_configFile));
 			configuration.addDocument(docshop);
+
+			Document dochistory = documentBuilder.parse(new File(
+					localhistory_configFile));
+			configuration.addDocument(dochistory);
 
 			sessionFactory = configuration.buildSessionFactory();
 		} catch (Exception e) {
