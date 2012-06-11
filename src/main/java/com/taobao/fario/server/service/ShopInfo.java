@@ -151,6 +151,23 @@ public class ShopInfo {
 		altitude = 0.0;
 	}
 
+	public ShopInfo(String name, String address, String telephone,
+			String fetchfrom, String category, String fetchBy, Double latitude,
+			Double longitude, Double altitude) {
+		// TODO Auto-generated constructor stub
+		this.shopName = name;
+		this.address = address;
+		this.telephone = telephone;
+		this.fetchfrom = fetchfrom;
+		this.category = category;
+		this.fetchBy = fetchBy;
+
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.altitude = altitude;
+
+	}
+
 	public String toJson() {
 		JSONObject jsonObject = JSONObject.fromObject(this);
 		return jsonObject.toString();
