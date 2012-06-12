@@ -150,12 +150,13 @@ public class ShopInfo {
 		shopurl = "http://poi.mapbar.com/hangzhou/MAPICPFNYMJBXRYMHOTIC";
 	}
 
-	public ShopInfo(String name, String address, String telephone,
+	public ShopInfo(String name, String address, String shopurl,String telephone,
 			String fetchfrom, String category, String fetchBy, Double latitude,
 			Double longitude, Double altitude) {
 		// TODO Auto-generated constructor stub
 		this.shopName = name;
 		this.address = address;
+		this.shopurl = shopurl;
 		this.telephone = telephone;
 		this.fetchfrom = fetchfrom;
 		this.category = category;
