@@ -49,8 +49,7 @@ public class RegisterServlet extends HttpServlet {
 
 		UserHistory.getInstance().add(locationInfo);
 		
-		Session session = HibernateSessionFactory.getSession();
-
+		Session session = HibernateSessionFactory.getSession();		
 		Criteria criteria = session.createCriteria(ShopInfo.class);
 		criteria.setMaxResults(1);
 		List<ShopInfo> shoplist = criteria.list();
