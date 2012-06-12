@@ -39,7 +39,10 @@ public class RegisterUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String name = req.getParameter("name");
+		req.setCharacterEncoding("GB2312");
+
+		String name = new String(req.getParameter("name")
+				.getBytes("ISO-8859-1"), "GB2312");
 		PrintWriter writer = resp.getWriter();
 
 		Session session = HibernateSessionFactory.getSession();
@@ -84,28 +87,6 @@ public class RegisterUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		req.setCharacterEncoding("utf-8");
-		String time = req.getParameter("time");
-		double latitude = Double.parseDouble(req.getParameter("la"));
-		double longitude = Double.parseDouble(req.getParameter("lo"));
-		double altitude = Double.parseDouble(req.getParameter("al"));
-		int accuracy = Integer.parseInt(req.getParameter("acc"));
-		String username = req.getParameter("uid");
-		String key = req.getParameter("key");
-
-		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
-				altitude, accuracy, username);
-
-		UserHistory.getInstance().add(locationInfo);
-		ShopInfo shopInfo = new ShopInfo(key);
-		String result = shopInfo.toJson();
-
-		PrintWriter writer = resp.getWriter();
-		if (result != null) {
-			writer.write(result);
-		} else {
-			writer.write("");
-		}
-		writer.close();
+		this.doGet(req, resp);
 	}
 }
