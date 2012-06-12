@@ -38,13 +38,27 @@ public class AddShopServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		ServletOutputStream out = resp.getOutputStream();
+		req.setCharacterEncoding("GB2312");
 
-		String shopName = req.getParameter("shopname");
-		String address = req.getParameter("address");
-		String telephone = req.getParameter("telephone");
-		String fetchfrom = req.getParameter("fetchfrom");
-		String category = req.getParameter("category");
-		String fetchBy = req.getParameter("fetchBy");
+		String shopName = new String(req.getParameter("shopname").getBytes(
+				"ISO-8859-1"), "GB2312");
+		
+		String address = new String(req.getParameter("address").getBytes(
+				"ISO-8859-1"), "GB2312");
+
+		String shopurl = new String(req.getParameter("shopurl").getBytes(
+				"ISO-8859-1"), "GB2312");
+		String telephone = new String(req.getParameter("telephone").getBytes(
+				"ISO-8859-1"), "GB2312");
+
+		String fetchfrom = new String(req.getParameter("fetchfrom").getBytes(
+				"ISO-8859-1"), "GB2312");
+
+		String category = new String(req.getParameter("category").getBytes(
+				"ISO-8859-1"), "GB2312");
+
+		String fetchBy = new String(req.getParameter("fetchBy").getBytes(
+				"ISO-8859-1"), "GB2312");
 
 		Double latitude = Double.parseDouble(req.getParameter("latitude"));
 		Double longitude = Double.parseDouble(req.getParameter("longitude"));
@@ -53,7 +67,8 @@ public class AddShopServlet extends HttpServlet {
 		Session session = HibernateSessionFactory.getSession();
 		Transaction beginTransaction = session.beginTransaction();
 
-		ShopInfo shop = new ShopInfo(shopName,address,telephone,fetchfrom,category,fetchBy,latitude,longitude,altitude);
+		ShopInfo shop = new ShopInfo(shopName, address, shopurl, telephone, fetchfrom,
+				category, fetchBy, latitude, longitude, altitude);
 
 		session.save(shop);
 		beginTransaction.commit();
@@ -81,28 +96,6 @@ public class AddShopServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		String time = req.getParameter("time");
-		Double latitude = Double.parseDouble(req.getParameter("la"));
-		Double longitude = Double.parseDouble(req.getParameter("lo"));
-		Double altitude = Double.parseDouble(req.getParameter("al"));
-		int accuracy = Integer.parseInt(req.getParameter("acc"));
-		String username = req.getParameter("uid");
-		String key = req.getParameter("key");
-
-		LocationInfo locationInfo = new LocationInfo(time, latitude, longitude,
-				altitude, accuracy, username);
-
-		UserHistory.getInstance().add(locationInfo);
-		ShopInfo shopInfo = new ShopInfo(key);
-		String result = shopInfo.toJson();
-
-		PrintWriter writer = resp.getWriter();
-		if (result != null) {
-			writer.write(result);
-		} else {
-			writer.write("");
-		}
-		writer.close();
+		this.doGet(req,resp);
 	}
 }
