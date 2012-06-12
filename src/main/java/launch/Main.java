@@ -7,10 +7,10 @@ import org.apache.catalina.startup.Tomcat;
 
 import com.taobao.fario.server.servlet.AddShopServlet;
 import com.taobao.fario.server.servlet.HelloServlet;
+import com.taobao.fario.server.servlet.LocationHistoryServlet;
 import com.taobao.fario.server.servlet.RegisterServlet;
 import com.taobao.fario.server.servlet.RegisterUserServlet;
 import com.taobao.fario.server.servlet.ShopListServlet;
-
 
 public class Main {
 
@@ -28,26 +28,29 @@ public class Main {
 		}
 
 		tomcat.setPort(Integer.valueOf(webPort));
-		
 
 		Context ctx = tomcat.addWebapp("/",
 				new File(webappDirLocation).getAbsolutePath());
-		
+
 		tomcat.addServlet("/", "hello", HelloServlet.class.getName());
 		ctx.addServletMapping("/hello", "hello");
-		
+
 		tomcat.addServlet("/", "register", RegisterServlet.class.getName());
 		ctx.addServletMapping("/register", "register");
-		
-		tomcat.addServlet("/", "registeruser", RegisterUserServlet.class.getName());
+
+		tomcat.addServlet("/", "registeruser",
+				RegisterUserServlet.class.getName());
 		ctx.addServletMapping("/registeruser", "registeruser");
-		
+
 		tomcat.addServlet("/", "addshop", AddShopServlet.class.getName());
 		ctx.addServletMapping("/addshop", "addshop");
-		
+
 		tomcat.addServlet("/", "shoplist", ShopListServlet.class.getName());
 		ctx.addServletMapping("/shoplist", "shoplist");
-		
+
+		tomcat.addServlet("/", "addlocation",
+				LocationHistoryServlet.class.getName());
+		ctx.addServletMapping("/addlocation", "addlocation");
 
 		System.out.println("configuring app with basedir: "
 				+ new File("./" + webappDirLocation).getAbsolutePath());
