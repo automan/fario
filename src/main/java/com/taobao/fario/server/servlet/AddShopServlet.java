@@ -37,12 +37,12 @@ public class AddShopServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		ServletOutputStream out = resp.getOutputStream();
+		PrintWriter writer = resp.getWriter();
 		req.setCharacterEncoding("GB2312");
 
 		String shopName = new String(req.getParameter("shopname").getBytes(
 				"ISO-8859-1"), "GB2312");
-		
+
 		String address = new String(req.getParameter("address").getBytes(
 				"ISO-8859-1"), "GB2312");
 
@@ -64,26 +64,27 @@ public class AddShopServlet extends HttpServlet {
 		Double longitude = Double.parseDouble(req.getParameter("longitude"));
 		Double altitude = Double.parseDouble(req.getParameter("altitude"));
 
+		ShopInfo shop = new ShopInfo(shopName, address, shopurl, telephone,
+				fetchfrom, category, fetchBy, latitude, longitude, altitude);
+
 		Session session = HibernateSessionFactory.getSession();
 		Transaction beginTransaction = session.beginTransaction();
 
-		ShopInfo shop = new ShopInfo(shopName, address, shopurl, telephone, fetchfrom,
-				category, fetchBy, latitude, longitude, altitude);
-
-		session.save(shop);
-		beginTransaction.commit();
-
 		Criteria criteria = session.createCriteria(ShopInfo.class);
+
+		criteria.add(org.hibernate.criterion.Expression.eq("shopurl", shopurl));
 		List<ShopInfo> shoplist = criteria.list();
 
-		for (ShopInfo s : shoplist) {
-			out.write((s.toJson() + "\r\n").getBytes("UTF-8"));
+		if (shoplist.size() != 0) {
+			writer.write("-1 shop exist.");
+		} else {
+			session.save(shop);
+			writer.write("1 shop added.");
+			beginTransaction.commit();
 		}
 		session.close();
-
-		out.flush();
-		out.close();
-
+		writer.flush();
+		writer.close();
 	}
 
 	/*
@@ -96,6 +97,6 @@ public class AddShopServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		this.doGet(req,resp);
+		this.doGet(req, resp);
 	}
 }

@@ -3,6 +3,7 @@
  */
 package com.taobao.fario.server.servlet;
 
+import java.beans.Expression;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
@@ -55,19 +56,14 @@ public class RegisterUserServlet extends HttpServlet {
 		user.setSex("男");
 		user.setTelephone("13666666666");
 		Criteria criteria = session.createCriteria(User.class);
+		criteria.add(org.hibernate.criterion.Expression.eq("name", name));
 		List<User> userlist = criteria.list();
 
-		boolean isExist = false;
-		for (User u : userlist) {
-			if (u.getName().endsWith(name)) {
-				isExist = true;
-				writer.write("-1 user exist");
-				break;
-			}
-		}
-		if (!isExist) {
+		if (userlist.size() != 0) {
+			writer.write("-1 user exist.");
+		} else {
 			session.save(user);
-			writer.write("1 user added");
+			writer.write("1 user added.");
 			beginTransaction.commit();
 		}
 		session.close();
