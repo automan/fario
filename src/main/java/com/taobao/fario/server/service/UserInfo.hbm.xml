@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-12 17:01:24 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.taobao.fario.server.service.UserInfo" table="user_info" schema="public">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" not-null="true" />
+        </property>
+        <property name="sex" type="java.lang.Character">
+            <column name="sex" length="1" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="telephone" />
+        </property>
+        <property name="nickname" type="string">
+            <column name="nickname" />
+        </property>
+        <set name="locationhistories" table="locationhistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" />
+            </key>
+            <one-to-many class="com.taobao.fario.server.service.Locationhistory" />
+        </set>
+    </class>
+</hibernate-mapping>

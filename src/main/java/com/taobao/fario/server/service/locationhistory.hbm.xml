@@ -1,26 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-12 17:01:24 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-	<class name="com.taobao.fario.server.service.LocationInfo" table="locationhistory">
-		<id name="userid" type="java.lang.Integer">
-			<column name="id" />
-		</id>
-		<property name="time" type="java.lang.String">
-			<column name="time" not-null="true" length="50" />
-		</property>
-		<property name="latitude" type="java.lang.Double">
-			<column name="latitude" not-null="true" />
-		</property>
-		<property name="longitude" type="java.lang.Double">
-			<column name="longitude" />
-		</property>
-
-		<property name="altitude" type="java.lang.Double">
-			<column name="altitude" not-null="true" />
-		</property>
-		<property name="accuracy" type="java.lang.Integer">
-			<column name="accuracy" length="20" />
-		</property>
-	</class>
+    <class name="com.taobao.fario.server.service.Locationhistory" table="locationhistory" schema="public">
+        <composite-id name="id" class="com.taobao.fario.server.service.LocationhistoryId">
+            <key-property name="userid" type="java.lang.Integer">
+                <column name="userid" />
+            </key-property>
+            <key-property name="time" type="time">
+                <column name="time" length="21" />
+            </key-property>
+            <key-property name="latitude" type="java.lang.Double">
+                <column name="latitude" precision="17" scale="17" />
+            </key-property>
+            <key-property name="longitude" type="java.lang.Double">
+                <column name="longitude" precision="17" scale="17" />
+            </key-property>
+            <key-property name="altitude" type="java.lang.Double">
+                <column name="altitude" precision="17" scale="17" />
+            </key-property>
+            <key-property name="accuracy" type="java.lang.Integer">
+                <column name="accuracy" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="userInfo" class="com.taobao.fario.server.service.UserInfo" update="false" insert="false" fetch="select">
+            <column name="userid" />
+        </many-to-one>
+    </class>
 </hibernate-mapping>
