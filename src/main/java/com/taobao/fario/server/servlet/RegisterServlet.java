@@ -104,7 +104,7 @@ public class RegisterServlet extends HttpServlet {
 		double latitude = Double.parseDouble(req.getParameter("la"));
 		double longitude = Double.parseDouble(req.getParameter("lo"));
 		double altitude = Double.parseDouble(req.getParameter("al"));
-		int accuracy = Integer.parseInt(req.getParameter("acc"));
+		int accuracy = (int)Double.parseDouble(req.getParameter("acc"));
 		String username = req.getParameter("uid");
 		String key = req.getParameter("key");
 
